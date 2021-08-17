@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>UX Rating</title>
+    <link rel="sortcut icon" href="icons/favicon.ico" type="image/x-icon" />
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./script.js"></script>
+  </head>
+  <body>
+    <header class="headerBar">
+        <div class="logoPequena">
+            <img src="icons/logo_pequena.svg" onclick="window.location.reload()">
+            <p onclick="window.location.reload()">UX Rating</p>
+        </div>
+        <div class="links">
+          <button class="button" id="btnAvaliacoes" onclick="clickAvaliacoes()">AVALIAÇÕES</button>
+          <button class="button" id="btnQuemSomos" onclick="clickQuemSomos()">QUEM SOMOS</button>
+          <button class="button" id="btnuxrating" onclick="clickuxrating()">O QUE É UX RATING?</button>
+        </div>
+    </header>
+    <div id="componente1" class="component">
+      <div class="telaInicial">
+        <div class="logoGrande">
+          <img src="icons/logo_grande.svg">
+          <p>UX Rating</p>
+        </div>
+        <div class="field mt2">
+            <input type="text" id="urlInput" autocomplete="off" placeholder="Digite aqui a URL do site para avaliar sua experiência">
+        </div>
+        <div class="start">
+          <button class="button" type="submit" onclick="clickStart('urlInput','urlInserida','componente1','componente2')">COMEÇAR</button>
+        </div>
+      </div>
+    </div>
+    <div id="componente2" class="component" hidden>
+      <div class="perguntas">
+        <div class="pergunta">
+          <a id="urlInserida" class="url" target="_blank"></a>
+          <p id="perguntaExibida" class="pgtExibida">O site em questão não apresenta nenhum tipo de demora considerável na sua utilização e apresentou algum status de carregamento visível na tela?</p>
+        </div>
+        <div class="buttonGroup mt2">
+          <button class="button" id="btn1" onclick="mudaCor('btn1', 'btn2', 'btn3', 'btn4', 'btn5')">
+              1
+          </button>
+          <button class="button" id="btn2" onclick="mudaCor('btn2', 'btn1', 'btn3', 'btn4', 'btn5')">
+              2
+          </button>
+          <button class="button" id="btn3" onclick="mudaCor('btn3', 'btn2', 'btn1', 'btn4', 'btn5')">
+              3
+          </button>
+          <button class="button" id="btn4" onclick="mudaCor('btn4', 'btn2', 'btn3', 'btn1', 'btn5')">
+              4
+          </button>
+          <button class="button" id="btn5" onclick="mudaCor('btn5', 'btn2', 'btn3', 'btn4', 'btn1')">
+              5
+          </button>
+        </div>
+        <div class="legenda mt1">
+          <p>Discordo<br>Totalmente</p>
+          <p>Discordo<br>Parcialmente</p>
+          <p>Não concordo<br>nem discordo</p>
+          <p>Concordo<br>Parcialmente</p>
+          <p>Concordo<br>Totalmente</p>
+        </div>
+        <div class="status mt4">
+          <img id="boneco" class="man" src="icons/man_run.svg">
+          <img id="barrinha" class="barra" src="icons/barra_status.svg">
+        </div>
+        <div class="explorar mt3">
+          <button class="button" id="anterior" onclick="clickAnterior('anterior','proximo','perguntaExibida','btn1', 'btn2', 'btn3', 'btn4', 'btn5')">
+            PÁGINA INICIAL
+          </button>
+          <button class="button" id="proximo" onclick="clickProximo('proximo','anterior','perguntaExibida','componente2','componente3','btn1', 'btn2', 'btn3', 'btn4', 'btn5','soma')">
+            PRÓXIMO
+          </button>
+        </div>
+      </div>
+    </div>
+    <div id="componente3" class="component" hidden>
+      <div class="resultado">
+        <div class="mensagem">
+          <img class="medalha" id="medalha" src="icons/medalha.svg">
+          <h1 class="mt1">PARABÉNS!</h1>
+          <p class="mt1">Você completou a sua avaliação do site:</p>
+          <a id="fraseConclusao" class="linkResultado" target="_blank"></a>
+          <p class="mt1">Obrigado por participar, sua análise será muito importante para outros usuários!</p>
+        </div>
+        <h2 id="soma" class="mt1"></h2>
+        <div class="barraResultado mt1">
+          <canvas id="barra1" width="124" height="17"></canvas>
+          <canvas id="barra2" width="124" height="17"></canvas>
+          <canvas id="barra3" width="124" height="17"></canvas>
+          <canvas id="barra4" width="124" height="17"></canvas>
+          <canvas id="barra5" width="124" height="17"></canvas>
+        </div>
+        <p id="fraseResultado"></p>
+        <button class="maisDetalhes" onclick="clickDetalhes()">Ver mais detalhes</button>
+        <button class="btnInicio mt1" onclick="window.location.reload()">VOLTAR PARA O INÍCIO</button>
+      </div>
+    </div>
+    <div id="componente4" class="component" hidden>
+      <div class="avaliacoes">
+        <p class="title mt2">Listagem de avaliações</p>
+        <div class="mt2">
+          <table id="tabelaAvaliacoes" border="1" onmouseover="mouseOverTabela()">
+            <colgroup>
+              <col class="qtde">
+              <col class="site">
+              <col class="nota">
+              <col class="avaliacao">
+            </colgroup>
+            <tr class="cabecalho" align="left">
+              <th width="5%">Qtde.</th>
+              <th width="35%">Site</th>
+              <th width="15%">Nota</th>
+              <th width="45%">Avaliação</th>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div id="componente5" class="component" hidden>
+      <div class="quemSomos">
+        <p class="titulo5 title mt4">Quem somos?</p>
+        <div class="desenvolvedores mt4">
+          <div class="marco">
+            <img src="icons/marco.svg">
+            <p class="mt1"><b>Marco Túlio</b><br>Estudante de UX/UI Design e entusiasta de hambúrgueres</p>
+          </div>
+          <div class="linkedin">
+            <a href="http://linkedin.com/in/marco-túlio-pereira-lima-1196a11ab" target="_blank"><img class="linkedinMarco" src="icons/link_marco.svg"></a>
+            <a href="http://linkedin.com/in/rafael-de-almeida-96492073" target="_blank"><img class="linkedinRafael" src="icons/link_rafael.svg"></a>
+          </div>
+          <div class="rafael">
+            <img src="icons/rafael.svg">
+            <p class="mt1"><b>Rafael de Almeida</b><br>Estudante de Programação Web e entusiasta dos hambúrgueres do Marco</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="componente6" class="component" hidden>
+      <div class="uxrating mt5">
+        <div class="explicacaoux">
+          <img src="icons/ux_interrogacao.svg">
+          <div>
+            <p class="titulo6-1 title">O que é UX?</p>
+            <p class="explicacaouxTexto mt4">Antes de falarmos sobre o UX Rating seria legal dar uma breve explicação sobre o que é o UX. 
+            A sigla vem de User Experience, isso é, toda a experiência do usuário ao utilizar algum tipo de produto ou serviço, 
+            seja ele virtual ou não. Essa experiência está ligada diretamente aos sentimentos do usuário no manuseio do serviço. 
+            Vale lembrar que sua experiência é avaliada antes e depois da utilização dos serviços de um determinado produto. 
+            Então, basicamente UX é tudo aquilo que você sente ao utilizar um serviço.</p>
+          </div>
+        </div>
+        <div class="explicacaouxrating">
+          <div>
+            <p class="titulo6-2 title">E o que é esse UX Rating?</p>
+            <p class="uxratingTexto mt4">O UX Rating é uma plataforma que tem como um de seus objetivos ajudar sites a melhorarem a experiência 
+              de seus usuários ao utilizá-los. E o principal da plataforma é avaliar os sentimentos de seus usuários e 
+              possíveis pontos de melhorias nos sites avaliados, com o intuito de deixar cada vez mais usuários satisfeitos.</p>
+          </div>
+            <img src="icons/ux_exclamacao.svg">
+        </div>
+      </div>
+    </div>
+    <div id="componente7" class="component" hidden>
+      <div class="detalhes mt1">
+        <p class="title mt4">Mais detalhes</p>
+        <div class="resultados">
+          
+          <h3 class="mt3">Site avaliado: </h3>
+          <a id="linkDetalhes" class="linkResultado" target="_blank"></a>
+          <br>
+          <h3 class="mt1">Total de avaliações: </h3>
+          <p id="totalAvaliacoes"></p>
+          <br>
+          <h3 class="mt1">Resultado geral: </h3>
+          <p id="resultadoGeral"></p>
+          <br>
+          <h1 class="mt3">Resultados específicos</h1>
+          <br>
+          <p><b>1)</b> O site em questão não apresenta nenhum tipo de demora considerável na sua utilização e apresentou algum status de carregamento visível na tela?</p>
+          <br>
+          <p><b>Heurística correspondente:</b> #1: Visibilidade do status do sistema</p>
+          <br>
+          <p><b>Nota: </b></p>
+          <p id="nota1"></p>
+          <br>
+          <p><b>Dicas de melhoria:</b></p>
+          <br><p id="dica1">- N/A</p>
+          <br><p id="dica1-1" hidden>- Adicionar algum tipo de status de carregamento caso o site não possua nenhum.</p>
+          <br>
+          <p class="mt1"><b>2)</b> Ao utilizar a plataforma você não encontrou nenhum jargão que você julgou difícil de ser interpretado, atrapalhando a sua experiência?</p>
+          <br>
+          <p><b>Heurística correspondente:</b> #2: Combinação entre o sistema e o mundo real</p>
+          <br>
+          <p><b>Nota: </b></p>
+          <p id="nota2"></p>
+          <br>
+          <p><b>Dicas de melhoria:</b></p>
+          <br><p id="dica2">- N/A</p>
+          <br>
+          <p class="mt2"><b>3)</b> Ao utilizar a plataforma você não sentiu dificuldade de manusear nenhuma tela que tenha entrado?</p>
+          <br>
+          <p><b>Heurística correspondente:</b> #3: controle e liberdade do usuário</p>
+          <br>
+          <p><b>Nota: </b></p>
+          <p id="nota3"></p>
+          <br>
+          <p><b>Dicas de melhoria:</b></p>
+          <br><p id="dica3">- N/A</p>
+          <br>
+          <p class="mt2"><b>4)</b> Todas as páginas do site estão condizentes em aspectos visuais?</p>
+          <br>
+          <p><b>Heurística correspondente:</b> #4: Consistência e padrões</p>
+          <br>
+          <p><b>Nota: </b></p>
+          <p id="nota4"></p>
+          <br>
+          <p><b>Dicas de melhoria:</b></p>
+          <br><p id="dica4">- N/A</p>
+          <br>
+          <p class="mt2"><b>5)</b> Ao efetuar uma ação sem querer, nenhum tipo de frustração foi ocasionada?</p>
+          <br>
+          <p><b>Heurística correspondente:</b> #5: Prevenção de erros</p>
+          <br>
+          <p><b>Nota: </b></p>
+          <p id="nota5"></p>
+          <br>
+          <p><b>Dicas de melhoria:</b></p>
+          <br><p id="dica5">- N/A</p>
+          <br>
+          <p class="mt2"><b>6)</b> É necessário lembrar de muitas informações na utilização do site?</p>
+          <br>
+          <p><b>Heurística correspondente:</b> #6: Reconhecimento em vez de recordação</p>
+          <br>
+          <p><b>Nota: </b></p>
+          <p id="nota6"></p>
+          <br>
+          <p><b>Dicas de melhoria:</b></p>
+          <br><p id="dica6">- N/A</p>
+          <br>
+          <p class="mt2"><b>7)</b> O site era simples de utilizar?</p>
+          <br>
+          <p><b>Heurística correspondente:</b> #7: Flexibilidade e eficiência de uso</p>
+          <br>
+          <p><b>Nota: </b></p>
+          <p id="nota7"></p>
+          <br>
+          <p><b>Dicas de melhoria:</b></p>
+          <br><p id="dica7">- N/A</p>
+          <br>
+          <p class="mt2"><b>8)</b> Você se sentiu distraído com elementos desnecessários no site?</p>
+          <br>
+          <p><b>Heurística correspondente:</b> #8: Design estético e minimalista</p>
+          <br>
+          <p><b>Nota: </b></p>
+          <p id="nota8"></p>
+          <br>
+          <p><b>Dicas de melhoria:</b></p>
+          <br><p id="dica8">- N/A</p>
+          <br>
+          <p class="mt2"><b>9)</b> Caso tenha errado no preenchimento de alguma informação o site apresentou algum tipo de feedback visual?</p>
+          <br>
+          <p><b>Heurística correspondente:</b> #9: Ajude os usuários a reconhecer, diagnosticar e se recuperar de erros</p>
+          <br>
+          <p><b>Nota: </b></p>
+          <p id="nota9"></p>
+          <br>
+          <p><b>Dicas de melhoria:</b></p>
+          <br><p id="dica9">- N/A</p>
+          <br><p id="dica9-1" hidden>- Os feedbacks não devem ser somente escritos, mas também utilizar de cores e ícones para uma plataforma mais acessível.</p>
+          <br>
+          <p class="mt1"><b>10)</b> O site apresenta algum tipo de central de ajuda ao usuário?</p>
+          <br>
+          <p><b>Heurística correspondente:</b> #10: Ajuda e documentação</p>
+          <br>
+          <p><b>Nota: </b></p>
+          <p id="nota10"></p>
+          <br>
+          <p><b>Dicas de melhoria:</b></p>
+          <br><p id="dica10">- N/A</p>
+        </div>
+        <p class="title mt3">Entendendo a avaliação</p>
+        <div class="explicacaoResultados">
+          <p class="mt2">Aqui você pode ver a avaliação do site selecionado em detalhes, inclusive dicas de melhoria (quando necessário).</p>
+          <p class="mt1">Primeiramente vamos explicar como essa avaliação funciona. As perguntas feitas no questionário de avaliação 
+            foram construídas com base nas "heurísticas de Nielsen", buscando avaliar a experiência do usuário em um site específico. 
+            Para entender melhor o que isso significa, veja as palavras de Jakob Nielsen (uma das maiores referências no assunto) 
+            sobre o que é o UX, ou como muitos chamam, a experiência do usuário:</p>
+          <p class="mt1"><i>"É a forma com que você sente o mundo, é a forma que você experiencia a sua vida, é a forma que você 
+            experiencia um serviço, ou… sim… um aplicativo ou um sistema de computador. Mas é um sistema. É tudo!"</i></p>
+          <p class="mt1">Tendo isso em mente, vamos entender como funcionam os resultados exibidos aqui. O resultado da avaliação de 
+            um site é sempre representado por um número entre 10 e 50 (quanto maior melhor), sendo que cada pergunta recebe uma nota de 1 a 5.
+            Todos os valores exibidos aqui, ou seja, as notas das perguntas e o resultado geral, são representados por uma média 
+            de todas as avaliações que o site em questão recebeu.</p>
+          <p class="mt1">Até 10, a nota é considerada ruim;
+            <br>De 11 a 20, a nota é considerada a desejar;
+            <br>De 21 a 30, a nota é considerada regular;
+            <br>De 31 a 40, a nota é considerada boa;
+            <br>Acima de 40, a nota é considerada ótima.
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+  <footer class="footerBar"></footer>
+</html>
