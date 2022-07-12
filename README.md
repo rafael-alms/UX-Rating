@@ -8,6 +8,7 @@
 
 * [Sobre](#Sobre-📋)
     * [Funcionalidades](#Funcionalidades-🚀)
+* [Deploy da Aplicação](#Deploy-da-Aplicação-💨)
 * [Como usar](#como-usar-🔎)
     * [Pré-requisitos](#Pré-requisitos-🧰)
     * [Armazenamento](#Armazenamento-💾)
@@ -44,6 +45,10 @@ O UX Rating é uma plataforma que tem como um de seus objetivos ajudar sites a m
     <img alt="Detalhes" title="Detalhes" src="imagens/detalhes.png">
     <p>Detalhes de uma avaliação</p>
 </h3>
+
+# Deploy da Aplicação 💨
+
+> Link do deploy da aplicação, realizado pelo GitHub Pages: https://rafael-alms.github.io/UX-Rating/
 
 # Como usar 🔎
 
