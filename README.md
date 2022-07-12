@@ -6,13 +6,13 @@
 
 # Tabela de conteúdos 🔖
 
-* [Sobre](#Sobre-📋)
-    * [Funcionalidades](#Funcionalidades-🚀)
-* [Deploy da Aplicação](#Deploy-da-Aplicação-💨)
+* [Sobre](#sobre-📋)
+    * [Funcionalidades](#funcionalidades-🚀)
+* [Deploy da Aplicação](#deploy-da-aplicação-💨)
 * [Como usar](#como-usar-🔎)
-    * [Pré-requisitos](#Pré-requisitos-🧰)
-    * [Armazenamento](#Armazenamento-💾)
-* [Tecnologias](#Tecnologias-💻)
+    * [Pré-requisitos](#pré-requisitos-🧰)
+    * [Armazenamento](#armazenamento-💾)
+* [Tecnologias](#tecnologias-💻)
 
 # Sobre 📋
 
